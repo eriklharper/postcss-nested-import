@@ -1,0 +1,35 @@
+{
+  "name": "postcss-nested-import",
+  "version": "0.0.0",
+  "description": "PostCSS plugin for importing other stylesheet source files anywhere in your CSS.",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "import"
+  ],
+  "author": "Erik Harper <eriklharper@gmail.com>",
+  "license": "MIT",
+  "repository": "eriklharper/postcss-nested-import",
+  "bugs": {
+    "url": "https://github.com/eriklharper/postcss-nested-import/issues"
+  },
+  "homepage": "https://github.com/eriklharper/postcss-nested-import",
+  "dependencies": {
+    "postcss": "^5.2.6"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-postcss": "^2.0.2",
+    "jest": "^18.0.0"
+  },
+  "scripts": {
+    "test": "jest && eslint *.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5",
+    "env": {
+      "jest": true
+    }
+  }
+}
