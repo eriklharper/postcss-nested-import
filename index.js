@@ -1,3 +1,5 @@
+'use strict';
+
 const postcss = require('postcss');
 const fs = require('fs');
 
@@ -7,10 +9,10 @@ const fs = require('fs');
  * @return {[type]}      [description]
  */
 function parseImportPath(path) {
-  const matches = path.trim().match(/^['"](.+?)['"](.*)/);
-  const modes = matches[2].trim().split(" ");
-  const fragment = matches[1];
-  return fragment;
+    const matches = path.trim().match(/^['"](.+?)['"](.*)/);
+    // const modes = matches[2].trim().split(' ');
+    const fragment = matches[1];
+    return fragment;
 }
 
 /**
@@ -19,14 +21,14 @@ function parseImportPath(path) {
  * @return {[type]}      [description]
  */
 function readFile(file) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(file, 'utf-8', (err, contents) => {
-      if (err) {
-        return reject(err);
-      }
-      resolve(contents);
+    return new Promise((resolve, reject) => {
+        fs.readFile(file, 'utf-8', (err, contents) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(contents);
+        });
     });
-  });
 }
 
 /**
@@ -34,23 +36,21 @@ function readFile(file) {
  * @type {[type]}
  */
 module.exports = postcss.plugin('postcss-nested-import', () => {
-  return (root, result) => {
-    return new Promise((resolve, reject) => {
-      let prom = Promise.resolve();
-      root.walkAtRules('import', importAtRule => {
-        if (importAtRule.params) {
-          const path = parseImportPath(importAtRule.params);
-          if (path == null) {
-            return;
-          }
-          prom = prom.then(() => {
-            return readFile(path).then(fileContents => {
-              return importAtRule.replaceWith(fileContents);
+    return root => {
+        return new Promise(resolve => {
+            let prom = Promise.resolve();
+            root.walkAtRules('import', importAtRule => {
+                if (importAtRule.params) {
+                    const path = parseImportPath(importAtRule.params);
+                    if (path === null) {
+                        return;
+                    }
+                    prom = prom.then(() => readFile(path).then(fileContents =>
+                      importAtRule.replaceWith(fileContents)
+                    ));
+                }
             });
-          });
-        }
-      });
-      resolve(prom);
-    });
-  };
+            resolve(prom);
+        });
+    };
 });
