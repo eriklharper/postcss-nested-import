@@ -1,6 +1,6 @@
 {
   "name": "postcss-nested-import",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "PostCSS plugin for importing other stylesheet source files anywhere in your CSS.",
   "keywords": [
     "postcss",
