@@ -24,7 +24,6 @@ function readFile(file) {
       if (err) {
         return reject(err);
       }
-      console.log(contents);
       resolve(contents);
     });
   });
@@ -46,8 +45,6 @@ module.exports = postcss.plugin('postcss-nested-import', () => {
           }
           prom = prom.then(() => {
             return readFile(path).then(fileContents => {
-              // console.log(importAtRule);
-              // console.log(fileContents);
               return importAtRule.replaceWith(fileContents);
             });
           });
