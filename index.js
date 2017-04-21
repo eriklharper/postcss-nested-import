@@ -20,11 +20,12 @@ function parseImportPath(path) {
  */
 function readFile(file) {
   return new Promise((resolve, reject) => {
-    fs.readFile(file, (err, contents) => {
+    fs.readFile(file, 'utf-8', (err, contents) => {
       if (err) {
         return reject(err);
       }
-      resolve(contents.toString("utf-8"));
+      console.log(contents);
+      resolve(contents);
     });
   });
 }
@@ -45,7 +46,8 @@ module.exports = postcss.plugin('postcss-nested-import', () => {
           }
           prom = prom.then(() => {
             return readFile(path).then(fileContents => {
-              console.log(fileContents);
+              // console.log(importAtRule);
+              // console.log(fileContents);
               return importAtRule.replaceWith(fileContents);
             });
           });
