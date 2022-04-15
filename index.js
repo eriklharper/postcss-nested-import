@@ -16,7 +16,14 @@ module.exports = () => {
           return;
         }
 
+        let base = "";
+
+        if (node.source && node.source.input && node.source.input.file) {
+          base = path.dirname(node.source.input.file);
+        }
+
         let resolvedPath = path.resolve(
+          base,
           node.params.slice(
             `'"`.includes(node.params[0]) ? 1 : 0,
             `'"`.includes(node.params[~-node.params.length]) ? -1 : undefined
