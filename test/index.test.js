@@ -31,7 +31,7 @@ test("01 - replaces one instance of @import", async () => {
   await run(
     `@media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
-    @import './test/mocks/colors1.css';
+    @nested-import './test/mocks/colors1.css';
   }
 }`,
     `@media (prefers-color-scheme: light) {
@@ -48,9 +48,9 @@ test("02 - two instances, different quote styles", async () => {
   await run(
     `@media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
-    @import './test/mocks/colors1.css';
-    @import "./test/mocks/colors2.css";
-    @import ./test/mocks/colors1.css;
+    @nested-import './test/mocks/colors1.css';
+    @nested-import "./test/mocks/colors2.css";
+    @nested-import ./test/mocks/colors1.css;
   }
 }`,
     `@media (prefers-color-scheme: light) {
@@ -71,12 +71,12 @@ test("02 - two instances, different quote styles", async () => {
 
 test("03 - only @import in one line", async () => {
   await run(
-    `@import './test/mocks/vendor.css';`,
+    `@nested-import './test/mocks/vendor.css';`,
     `.vendor { background: silver; }.vendor-font { font-size: 14px; }`
   );
 });
 
-test("04 - replaces @import nested under :global", async () => {
+test("04 - replaces @nested-import nested under :global", async () => {
   await run(
     `:global { @import './test/mocks/vendor.css'; background: gold; }`,
     `:global { .vendor { background: silver; } .vendor-font { font-size: 14px; } background: gold; }`
@@ -87,12 +87,12 @@ test("05 - empty import", async () => {
   await run(
     `@media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
-    @import ;
+    @nested-import ;
   }
 }`,
     `@media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
-    @import ;
+    @nested-import ;
   }
 }`
   );
@@ -103,7 +103,7 @@ test("06 - throws with a meaningful message when fs error happens", async () => 
     run(
       `@media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
-    @import "nonexistent";
+    @nested-import "nonexistent";
   }
 }`
     )

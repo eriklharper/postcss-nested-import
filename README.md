@@ -15,7 +15,7 @@ Before:
 
 /* index.css */
 :global {
-  @import './vendor.css';
+  @nested-import './vendor.css';
 }
 ```
 After:

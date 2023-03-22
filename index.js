@@ -7,7 +7,7 @@ const path = require("path");
 module.exports = () => {
   return {
     AtRule(node) {
-      if (node.name === "import") {
+      if (node.name === "nested-import") {
         if (
           !node.params ||
           typeof node.params !== "string" ||
