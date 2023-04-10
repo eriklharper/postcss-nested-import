@@ -22,18 +22,15 @@ jobs:
   short:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        node-version:
-          - 16
-          - 14
-    name: Node.js ${{ matrix.node-version }} Quick
+      node: [14, 16]
+    name: Node.js ${{ matrix.node }} Quick
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
-      - name: Install Node.js ${{ matrix.node-version }}
+      - name: Install Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node }}
       - name: Install dependencies
         run: npm ci
       - name: Run unit tests
