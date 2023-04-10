@@ -22,7 +22,8 @@ jobs:
   short:
     runs-on: ubuntu-latest
     strategy:
-      node: [14, 16]
+      matrix:
+        node: [14, 16]
     name: Node.js ${{ matrix.node }} Quick
     steps:
       - name: Checkout the repository
