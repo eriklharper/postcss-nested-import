@@ -4,42 +4,37 @@ on:
   pull_request:
 jobs:
   full:
-    name: Node.js 17 Full
+    name: Node.js 18 Full
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 17
-          cache: yarn
+          node-version: 18
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Run tests
-        run: yarn test
+        run: npm test
         env:
           FORCE_COLOR: 2
   short:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version:
-          - 16
-          - 14
-          - 12
-    name: Node.js ${{ matrix.node-version }} Quick
+        node: [16]
+    name: Node.js ${{ matrix.node }} Quick
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v2
-      - name: Install Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/checkout@v3
+      - name: Install Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: yarn
+          node-version: ${{ matrix.node }}
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Run unit tests
-        run: yarn unit
+        run: npm run unit
         env:
           FORCE_COLOR: 2
