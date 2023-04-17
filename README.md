@@ -1,12 +1,15 @@
-# PostCSS Nested Import [![Build Status][ci-img]][ci]
+<h1 align="center">PostCSS Nested Import</h1>
 
-[PostCSS] plugin for importing other stylesheet source files anywhere in your CSS.
+<p align="center">PostCSS plugin for importing other stylesheet source files anywhere in your CSS.</p>
 
-[PostCSS]: https://github.com/postcss/postcss
-[ci-img]:  https://travis-ci.org/eriklharper/postcss-nested-import.svg
-[ci]:      https://travis-ci.org/eriklharper/postcss-nested-import
+<p align="center">
+<a href="https://github.com/eriklharper/postcss-nested-import/actions/workflows/test.yml" rel="nofollow noreferrer noopener">
+    <img src="https://github.com/eriklharper/postcss-nested-import/actions/workflows/test.yml/badge.svg" alt="GitHub CI test">
+  </a>
+</p>
 
 Before:
+
 ```css
 /* vendor.css */
 .vendor {
@@ -18,7 +21,9 @@ Before:
   @nested-import './vendor.css';
 }
 ```
+
 After:
+
 ```css
 :global {
   .vendor {
@@ -30,9 +35,7 @@ After:
 ## Usage
 
 ```js
-postcss([
-  require('postcss-nested-import')
-])
+postcss([require("postcss-nested-import")]);
 ```
 
-See [PostCSS] docs for examples for your environment.
+See [PostCSS](https://github.com/postcss/postcss) docs for examples for your environment.

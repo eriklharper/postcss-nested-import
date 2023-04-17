@@ -31,7 +31,7 @@ module.exports = () => {
         node.replaceWith(`${node.raws.before}${replacement}`);
       }
     },
-    postcssPlugin: "ppostcss-nested-import"
+    postcssPlugin: "postcss-nested-import"
   };
 };
 
