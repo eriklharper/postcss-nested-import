@@ -78,7 +78,7 @@ test("03 - only @import in one line", async () => {
 
 test("04 - replaces @nested-import nested under :global", async () => {
   await run(
-    `:global { @import './test/mocks/vendor.css'; background: gold; }`,
+    `:global { @nested-import './test/mocks/vendor.css'; background: gold; }`,
     `:global { .vendor { background: silver; } .vendor-font { font-size: 14px; } background: gold; }`
   );
 });
