@@ -27,7 +27,7 @@ async function catchError(fn) {
 
 // -----------------------------------------------------------------------------
 
-test("01 - replaces one instance of @import", async () => {
+test("01 - replaces one instance of @nested-import", async () => {
   await run(
     `@media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
@@ -110,6 +110,27 @@ test("06 - throws with a meaningful message when fs error happens", async () => 
   );
   match(error.message, /error reading file/);
   match(error.message, /nonexistent/);
+});
+
+test("07 - do not import @import", async () => {
+  await run(
+    `@import "./test/mocks/colors2.css";
+    @media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    @nested-import './test/mocks/colors1.css';
+    @import "./test/mocks/colors2.css";
+  }
+}`,
+    `@import "./test/mocks/colors2.css";
+    @media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    h1 {
+  color: red;
+}
+    @import "./test/mocks/colors2.css";
+  }
+}`
+  );
 });
 
 test.run();
