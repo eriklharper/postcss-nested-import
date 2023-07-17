@@ -1,6 +1,17 @@
-node_modules
-npm-debug.log
-yarn-error.log
-coverage
-npm-debug.log
+# ide
+.vscode
+.idea
+.iml
 
+# file system
+.DS_Store
+
+# dependencies
+node_modules
+.npm
+
+# logs
+*.log
+
+# tests
+coverage
