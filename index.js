@@ -16,10 +16,9 @@ module.exports = () => {
           return;
         }
 
-        let id = node.params.slice(
-          `'"`.includes(node.params[0]) ? 1 : 0,
-          `'"`.includes(node.params[~-node.params.length]) ? -1 : undefined
-        );
+        let id = node.params
+          .replace(/^(url\(\s*)?['"]?/, "")
+          .replace(/['"]?\s*(\))?$/, "");
 
         let replacement;
         try {

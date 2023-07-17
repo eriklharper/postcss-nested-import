@@ -133,4 +133,60 @@ test("07 - do not import @import", async () => {
   );
 });
 
+test("08 - do import url() function", async () => {
+  await run(
+    `@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    @nested-import url('./test/mocks/colors1.css');
+    @nested-import url("./test/mocks/colors2.css");
+    @nested-import url(./test/mocks/colors1.css);
+  }
+}`,
+    `@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    h1 {
+  color: red;
+}
+    h1 {
+  color: blue;
+}
+    h1 {
+  color: red;
+}
+  }
+}`
+  );
+});
+
+test("09 - url() function with line breaks", async () => {
+  await run(
+    `@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    @nested-import url(
+      './test/mocks/colors1.css'
+    );
+    @nested-import url(
+      "./test/mocks/colors2.css"
+    );
+    @nested-import url(
+      ./test/mocks/colors1.css
+    );
+  }
+}`,
+    `@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    h1 {
+  color: red;
+}
+    h1 {
+  color: blue;
+}
+    h1 {
+  color: red;
+}
+  }
+}`
+  );
+});
+
 test.run();
