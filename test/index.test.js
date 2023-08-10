@@ -1,3 +1,4 @@
+let path = require("path");
 let { test } = require("uvu");
 let { equal, match } = require("uvu/assert");
 let postcss = require("postcss");
@@ -6,9 +7,9 @@ let nestedImport = require("../");
 
 // -----------------------------------------------------------------------------
 
-async function run(input, output, opts) {
+async function run(input, output, opts, from) {
   let result = await postcss([nestedImport(opts)]).process(input, {
-    from: undefined
+    from
   });
   equal(result.css, output);
   equal(result.warnings().length, 0);
@@ -186,6 +187,25 @@ test("09 - url() function with line breaks", async () => {
 }
   }
 }`
+  );
+});
+
+test("10 - import based on current directory", async () => {
+  await run(
+    `@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    @nested-import './mocks/colors1.css';
+  }
+}`,
+    `@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    h1 {
+  color: red;
+}
+  }
+}`,
+    undefined,
+    path.join(__dirname, "app.css")
   );
 });
 
