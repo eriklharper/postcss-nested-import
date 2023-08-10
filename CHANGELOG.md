@@ -20,6 +20,10 @@ h1 {
 }
 ```
 
+### Fixes
+
+- updated dependencies, fixed all dependabot alerts
+
 ## 1.0.0 (2023-04-17)
 
 - renamed the API — from `@import` to `@nested-import`, to prevent clashes with [`postcss-import`](https://github.com/postcss/postcss-import) plugin
