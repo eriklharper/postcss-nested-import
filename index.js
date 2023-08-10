@@ -24,8 +24,8 @@ module.exports = () => {
         try {
           let resolvedPath = resolve.sync(id, {
             basedir: process.cwd(),
-            moduleDirectory: ["web_modules", "node_modules"],
             extensions: [".css"],
+            moduleDirectory: ["web_modules", "node_modules"],
             packageFilter: (pkg) => {
               if (pkg.style) pkg.main = pkg.style;
               else if (!pkg.main || !/\.css$/.test(pkg.main))

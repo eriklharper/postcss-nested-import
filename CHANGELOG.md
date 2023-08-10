@@ -1,9 +1,31 @@
-# 1.0.0
+# Changelog
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 1.1.0 (2023-08-10)
+
+### Features
+
+- enable import from `node_modules` - thanks [Kristoffer Nordström](https://github.com/42tte)
+- allow use of CSS [url() function syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/url) - thanks [Kristoffer Nordström](https://github.com/42tte)
+
+
+For example:
+
+```css
+@nested-import url("./test/mocks/colors2.css");
+h1 {
+  color: red;
+}
+```
+
+## 1.0.0 (2023-04-17)
 
 - renamed the API — from `@import` to `@nested-import`, to prevent clashes with [`postcss-import`](https://github.com/postcss/postcss-import) plugin
 - updated dependencies
 
-# 0.2.0
+## 0.2.0 (2022-02-10)
 
 - added `c8` for coverage and uvu for unit tests
 - enforces 100% coverage
@@ -20,6 +42,6 @@
 
 Closes issues #2, #3, #4, #5.
 
-# 0.1.0
+## 0.1.0 (2017-04-21)
 
 - Basic nested import functionality
