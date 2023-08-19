@@ -17,7 +17,8 @@
   "homepage": "https://github.com/eriklharper/postcss-nested-import",
   "scripts": {
     "unit": "uvu . '\\.test\\.(ts|js)$'",
-    "test": "c8 npm run unit && eslint ."
+    "test": "c8 npm run unit && eslint .",
+    "format": "prettier --write . --ignore-unknown"
   },
   "peerDependencies": {
     "postcss": "^8.3.0"
