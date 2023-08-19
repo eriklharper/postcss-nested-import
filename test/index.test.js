@@ -189,4 +189,11 @@ test("09 - url() function with line breaks", async () => {
   );
 });
 
+test("10 - package.json filter style, main & index", async () => {
+  await run(
+    `@nested-import './test/mocks/node_modules/style'; @nested-import './test/mocks/node_modules/main'; @nested-import './test/mocks/node_modules/index';`,
+    `.style {} .main {} .index {}`
+  );
+});
+
 test.run();
