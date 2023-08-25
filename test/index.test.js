@@ -72,14 +72,22 @@ test("02 - two instances, different quote styles", async () => {
 test("03 - only @import in one line", async () => {
   await run(
     `@nested-import './test/mocks/vendor.css';`,
-    `.vendor { background: silver; }.vendor-font { font-size: 14px; }`
+    `.vendor {
+  background: silver;
+}.vendor-font {
+  font-size: 14px;
+}`
   );
 });
 
 test("04 - replaces @nested-import nested under :global", async () => {
   await run(
     `:global { @nested-import './test/mocks/vendor.css'; background: gold; }`,
-    `:global { .vendor { background: silver; } .vendor-font { font-size: 14px; } background: gold; }`
+    `:global { .vendor {
+  background: silver;
+} .vendor-font {
+  font-size: 14px;
+} background: gold; }`
   );
 });
 
@@ -186,6 +194,13 @@ test("09 - url() function with line breaks", async () => {
 }
   }
 }`
+  );
+});
+
+test("10 - package.json filter style, main & index", async () => {
+  await run(
+    `@nested-import './test/mocks/node_modules/style'; @nested-import './test/mocks/node_modules/main'; @nested-import './test/mocks/node_modules/index';`,
+    `.style {} .main {} .index {}`
   );
 });
 

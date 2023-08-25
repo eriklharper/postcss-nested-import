@@ -10,7 +10,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - enable import from `node_modules` - thanks [Kristoffer Nordström](https://github.com/42tte)
 - allow use of CSS [url() function syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/url) - thanks [Kristoffer Nordström](https://github.com/42tte)
 
-
 For example:
 
 ```css
