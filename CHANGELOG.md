@@ -8,6 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - import files based on the current directory - thanks [linhe0x0](https://github.com/linhe0x0)
+- more unit tests — thanks [Kristoffer Nordström](https://github.com/42tte)
 
 ## 1.1.0 (2023-08-10)
 
