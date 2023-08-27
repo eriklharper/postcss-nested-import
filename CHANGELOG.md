@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.0 (2023-08-28)
+
+### Features
+
+- import files based on the current directory - thanks [linhe0x0](https://github.com/linhe0x0)
+
 ## 1.1.0 (2023-08-10)
 
 ### Features
