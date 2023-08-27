@@ -1,3 +1,4 @@
+const path = require("path");
 const { readFileSync } = require("fs");
 const resolve = require("resolve");
 
@@ -21,9 +22,15 @@ module.exports = () => {
           .replace(/['"]?\s*(\))?$/, "");
 
         let replacement;
+
+        let basedir = process.cwd();
+        if (node.source && node.source.input && node.source.input.file) {
+          basedir = path.dirname(node.source.input.file);
+        }
+
         try {
           let resolvedPath = resolve.sync(id, {
-            basedir: process.cwd(),
+            basedir,
             extensions: [".css"],
             moduleDirectory: ["web_modules", "node_modules"],
             packageFilter: (pkg) => {
