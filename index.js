@@ -8,7 +8,7 @@ const resolve = require("resolve");
 module.exports = () => {
   return {
     AtRule: {
-      "nested-import": (node) => {
+      "nested-import": (node, { result }) => {
         if (
           !node.params ||
           typeof node.params !== "string" ||
@@ -42,6 +42,12 @@ module.exports = () => {
           });
 
           replacement = readFileSync(resolvedPath, "utf8");
+          result.messages.push({
+            type: "dependency",
+            plugin: "postcss-nested-import",
+            file: resolvedPath,
+            parent: result.opts.from,
+          });
         } catch (error) {
           throw node.error(`error reading file:\n${id}`);
         }
