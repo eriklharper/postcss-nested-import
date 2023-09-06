@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.0 (2023-09-06)
+
+### Features
+
+- emit dependency message announcing dependency to imported file — thanks [Daniel Jagszent](https://github.com/d--j)
+
 ## 1.2.0 (2023-08-28)
 
 ### Features
