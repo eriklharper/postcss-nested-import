@@ -43,10 +43,10 @@ module.exports = () => {
 
           replacement = readFileSync(resolvedPath, "utf8");
           result.messages.push({
-            type: "dependency",
-            plugin: "postcss-nested-import",
             file: resolvedPath,
             parent: result.opts.from,
+            plugin: "postcss-nested-import",
+            type: "dependency"
           });
         } catch (error) {
           throw node.error(`error reading file:\n${id}`);
